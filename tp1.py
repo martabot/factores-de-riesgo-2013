@@ -8,10 +8,10 @@ print("intro: Cargando datos...")
 print(a)
 
 #------------PUNTO UNO-------------->
-salida=[0,0,0,0,0,0]
 enum=["Gran Buenos Aires","Pampeana","Noroeste","Noreste","Cuyo","Patagonia"]
 print("EJ1: Calculando cantidad de entradas por región...")
 regiones=data[:,2]
+salida=np.arange(max(regiones))
 for x in regiones:
 	salida[x.astype(np.int64)-1]+=1
 
@@ -24,9 +24,9 @@ print("  Total de entradas: "+str(sum(salida)))
 #------------PUNTO DOS-------------->
 print("EJ2: Graficando porcentajes para tipos de vivienda en el aglomerado de Gran Córdoba...")
 tiposViv=["Casa","Casilla","Depto","Inquilinato","Hotel o pension","Local","Otros"]
-porcentaje=[0,0,0,0,0,0,0]
 viviendas=data[:,5:7]
-total=0
+porcentaje=np.arange(max(data[:,6]))
+total=1
 for x in viviendas:
 	if(x[0]==2 and x[1]!=9):
 		i=x[1].astype(np.int64)
