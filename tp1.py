@@ -11,7 +11,7 @@ print(a)
 enum=["Gran Buenos Aires","Pampeana","Noroeste","Noreste","Cuyo","Patagonia"]
 print("EJ1: Calculando cantidad de entradas por región...")
 regiones=data[:,2]
-salida=np.arange(max(regiones))
+salida=[0,0,0,0,0,0]
 for x in regiones:
 	salida[x.astype(np.int64)-1]+=1
 
