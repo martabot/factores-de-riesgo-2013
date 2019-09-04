@@ -23,7 +23,7 @@ print("  Total de entradas: "+str(sum(salida)))
 
 #------------PUNTO DOS-------------->
 print("EJ2: Graficando porcentajes para tipos de vivienda en el aglomerado de Gran Córdoba...")
-tiposViv=["Casa","Casilla","Depto","Inquilinato","Hotel o pension","Local","Otros"]
+tiposViv=["Casa","Casilla","Depto","Inquilinato","Hotel o\npension","Local","Otros"]
 viviendas=data[:,5:7]
 porcentaje=np.arange(max(data[:,6]))
 total=1
@@ -34,12 +34,13 @@ for x in viviendas:
 		total+=1
 for x in range(0,6):
 	porcentaje[x]=(porcentaje[x]*100)/total
-plt.figure(figsize=(16,10))
+r=pd.Series(porcentaje,index=tiposViv)
+r.sort_values(inplace=True)
+plt.figure(figsize=(9,6))
 plt.subplot(111)
-plt.bar(tiposViv,porcentaje)
+plt.bar(r.index,r.values)
 plt.suptitle("Porcentaje para cada tipo de vivienda en Gran Córdoba")
 plt.show()
-#como lograr que el programa siga corriendo aun sin cerrar plot
 
 #-------------PUNTO TRES-------------->
 print("EJ3: Calculando cantidad de viviendas con baño o letrina en el Chaco...")
@@ -70,13 +71,14 @@ for x in data[:,29]:
 	elif(data[i,27]==2):
 		CM[val-1]+=1
 	i+=1
+
 ind = np.arange(N)
 width = 0.35
 p1 = plt.bar(ind, CH, width)
 p2 = plt.bar(ind, CM, width, bottom=CH)
 plt.ylabel('Cantidad por sexo')
 plt.xlabel('Edades')
-plt.title('Cantidad de jefes de hogar, discriminado en sexo y edades')
+plt.title('Cantidad de jefes de hogar para todo el país, discriminado en sexo y edades')
 plt.xticks(ind, ('0 a 17', '18 a 24', '25 a 34', '35 a 49', '50 a 64', '65 o +'))
 plt.legend((p1[0], p2[0]), ('Hombres', 'Mujeres'))
 plt.show()
@@ -89,10 +91,9 @@ p1=plt.bar(ind,CH,width)
 p2=plt.bar(ind,CM,width,bottom=CH)
 plt.ylabel('Porcentaje por sexo')
 plt.xlabel('Edades')
-plt.title('Porcentaje de jefes de hogar,discriminado en sexo y edades')
+plt.title('Porcentaje de jefes de hogar para todo el país,discriminado en sexo y edades')
 plt.xticks(ind, ('0 a 17', '18 a 24', '25 a 34', '35 a 49', '50 a 64', '65 o +'))
 plt.legend((p1[0],p2[0]),('Hombres','Mujeres'))
-plt.show()
-
+plt.show(block=True)
 
 #------------PUNTO CINCO---------------->
