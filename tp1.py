@@ -97,3 +97,22 @@ plt.legend((p1[0],p2[0]),('Hombres','Mujeres'))
 plt.show(block=True)
 
 #------------PUNTO CINCO---------------->
+N = len(data[:,28])
+CH=np.arange(N)
+CM=np.arange(N)
+i=0
+for x in data[:,28]:
+	if(data[i,27]==1):
+		CH[i]=x
+	elif(data[i,27]==2):
+		CM[i]=x
+	i+=1
+bini=max(data[:,28]).astype(np.int64)
+bini=np.arange(bini)
+plt.hist(CM,bins=bini)
+plt.title("Histograma para las jefas de hogar discriminado en edades")
+plt.show()
+
+plt.hist(CH,bins=bini)
+plt.title("Histograma para los jefes de hogar discriminado en edades")
+plt.show()
